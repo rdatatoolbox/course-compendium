@@ -94,9 +94,10 @@ extend the research."]]
 
 --
 
-- Should maintain a clear separation of .big[data, method, and output].
+- Should maintain a clear separation of **data**, **method**, and **output**.
 &lt;br/&gt;&lt;br/&gt;
-This means data files must be separate from code files. Keeping data and method separate treats the data as “read-only,” so that the original data is untouched and all modifications are transparently documented in the code.
+This means data files must be separate from code files. 
+Keeping data and method separate treats the data as "**read-only**", so that the original data is untouched and all modifications are transparently documented in the code.
 &lt;br/&gt;&lt;br/&gt;
 The output files should be considered as disposable, with a mindset that one can always easily regenerate the output using the code and data.
 
@@ -110,7 +111,7 @@ The output files should be considered as disposable, with a mindset that one can
 
 --
 
-- Numérotez les scripts, placez-y des entêtes
+- Par ex., numérotez les scripts, placez-y des entêtes
 
 ![](img/comp_2.png) ![:scale 70%](img/comp_3.png)
 
@@ -122,7 +123,8 @@ The output files should be considered as disposable, with a mindset that one can
 
 --
 
-Utilisez un script "maître" (`make.R`) qui execute les étapes dans l'ordre (c'est le SEUL script R à la racine !)
+Utilisez un script **principal** (par ex. `make.R`) qui exécute les étapes dans l'ordre 
+(c'est le SEUL script R à la racine !)
 
 .center[![:scale 40%](img/comp_4.png) ![:scale 40%](img/comp_make.png)]
 
@@ -130,7 +132,8 @@ Utilisez un script "maître" (`make.R`) qui execute les étapes dans l'ordre (c'
 
 ## Principes
 
-Utilisez un script "maître" (`make.R`) qui execute les étapes dans l'ordre (c'est le SEUL script R à la racine !)
+Utilisez un script **principal** (par ex. `make.R`) qui exécute les étapes dans l'ordre 
+(c'est le SEUL script R à la racine !)
 
 --
 
@@ -145,7 +148,8 @@ Tous les chemins (relatifs) seront définis à partir de la racine du projet !
 
 --
 
-Cela peut poser des problèmes lors de la compilation des .Rmd situés à l'intérieur de votre arborescence. --&gt; Utilisez le package [`{here}`](https://here.r-lib.org)
+Cela peut poser des problèmes lors de la compilation des `.Rmd` situés à 
+l'intérieur de votre arborescence. `--&gt;` Utilisez le package [`{here}`](https://here.r-lib.org)
 
 .center[![:scale 35%](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/here.png)]
 
@@ -155,14 +159,15 @@ Cela peut poser des problèmes lors de la compilation des .Rmd situés à l'int�
 ## Principes
 
 
-- L'utilisation d'un projet Rstudio permet de se retrouver à la racine du projet à son ouverture.
+- L'utilisation d'un projet RStudio (`.Rproj`) permet de se retrouver à la racine du projet 
+à son ouverture.
 
 --
 &lt;br /&gt;
 &lt;br /&gt;
 &lt;br /&gt;
 &lt;br /&gt;
-.center[SI VOUS UTILISEZ LA FONCTION SETWD() JE BRÛLE VOTRE ORDINATEUR !]
+.center[**SI VOUS UTILISEZ LA FONCTION `setwd()` JE BRÛLE VOTRE ORDINATEUR !**]
 
 .center[![](img/comp_rproj.png)]
 
@@ -176,7 +181,7 @@ Cela peut poser des problèmes lors de la compilation des .Rmd situés à l'int�
 
 Chaque script écrit des résultats (fichiers) les référençant explicitement dans leur nom.
 
-.center[e.g. le script "R/01_ingest_data.R" écrit des résultats du type "res/01_Zzz9Zzz9.truc"]
+.center[Par ex. le script `R/01_ingest_data.R` écrit des résultats du type `res/01_Zzz9Zzz9.truc`]
 
 ---
 
@@ -186,7 +191,7 @@ Chaque script écrit des résultats (fichiers) les référençant explicitement 
 
 --
 
-Placez un README à la racine du projet
+Placez un `README` à la racine du projet
 
 .center[![:scale 40%](img/comp_6.png)]
 
@@ -194,7 +199,6 @@ Placez un README à la racine du projet
 
 ## Principes
 
---
 
 -  Should specify the computational environment that was used for the original analysis. At its most basic, this could be a plain text file that includes a short list of the names and version numbers of the software and other critical tools used for the analysis. In more complex approaches, described below, the computational environment can be automatically preserved or reproduced as well.
 
@@ -202,7 +206,7 @@ Placez un README à la racine du projet
 &lt;br /&gt;
 &lt;br /&gt;
 &lt;br /&gt;
-Utilisez docker !
+Utilisez `Docker` !
 
 .center[<i class="fab fa-docker darkbig" role="presentation" aria-label="docker icon"></i>]
 
@@ -211,20 +215,20 @@ Utilisez docker !
 
 ## Principes
 
-- Séparons aussi le(s) documents de synthèse (papier, présentation, ...)
+- Séparez aussi le(s) documents de synthèse (papier, présentation, ...)
 
 .center[![:scale 40%](img/comp_7.png)]
 
 
 --
 
-.center[Utilisez les packages rmarkdown, knitr, et rticles, ils sont puissants.]
+.center[Utilisez les packages `rmarkdown`, `knitr`, et `rticles`, ils sont puissants.]
 
 ---
 
 ## Principes
 
-- Séparons aussi le(s) ressources utiles (biblio, etc ...)
+- Séparez aussi les ressources utiles (biblio, etc ...)
 
 .center[![:scale 40%](img/comp_8.png)]
 
@@ -235,9 +239,12 @@ Utilisez docker !
 
 - Il existe de nombreuses plateformes pour stocker votre supp. mat.
 
-- La plupat sont propriétaires/privées et/ou payantes (e.g. Dryad, https://datadryad.org/)
+- La plupart sont propriétaires/privées et/ou payantes (e.g. [Dryad](https://datadryad.org/))
 
-- Il existe Zenodo (https://zenodo.org/) : Il a été créé par OpenAIRE et le CERN pour fournir aux chercheurs un lieu pour déposer des ensembles de données. Il a été lancé en 2013, permettant à des chercheurs de télécharger des fichiers jusqu'à 50 GO.
+- Il existe `Zenodo` (https://zenodo.org/) : il a été créé par OpenAIRE et le CERN 
+pour fournir aux chercheurs un lieu pour déposer des ensembles de données. 
+Il a été lancé en 2013, permettant à des chercheurs de télécharger des fichiers 
+jusqu'à 50 Go.
 &lt;br /&gt;
 &lt;br /&gt;
 &lt;br /&gt;
@@ -249,7 +256,7 @@ Utilisez docker !
 
 ## -&gt; vers le package R
 
-- Finalement cette architecture n'est si différente de celle d'un package R !
+- Finalement, cette architecture n'est pas si différente de celle d'un package R !
 
 - En intégrant les éléments essentiels de la structure d'un package on bénéficie de tous les outils développés dans ce contexte.
 &lt;br /&gt;
@@ -264,7 +271,9 @@ Utilisez docker !
 &lt;br /&gt;
 &lt;br /&gt;
 &lt;br /&gt;
-- Marwick B, Boettiger C, Mullen L. 2018. Packaging data analytical work reproducibly using R (and friends). PeerJ Preprints 6:e3192v2 https://doi.org/10.7287/peerj.preprints.3192v2
+- Marwick B, Boettiger C, Mullen L. 2018. Packaging data analytical work 
+reproducibly using R (and friends). PeerJ Preprints 6:e3192v2 
+https://doi.org/10.7287/peerj.preprints.3192v2
 
 - https://research-compendium.science/
 
@@ -272,19 +281,19 @@ Utilisez docker !
 
 - https://github.com/cboettig/template (structure de package)
 
-- https://github.com/benmarwick/rrtools (structure de apckage + intégration docker !!)
+- https://github.com/benmarwick/rrtools (structure de package + intégration de Docker !!)
 
 ---
 
-## Limitation ...
+## Limitations...
 
 --
 
-- Il est compliqué, lorsque l'analyse n'est pas linéaire, de se souvenir de toutes les dépendances ...
+- Il est compliqué, lorsque l'analyse n'est pas linéaire, de se souvenir de toutes les dépendances...
 
-- On est souvent ammener à refaire tourner l'ensemble des analyses ...
+- On est souvent amener à refaire tourner l'ensemble des analyses...
 
-- Et si les calculs sont longs, cela devient vraient contre-productif !
+- Et si les calculs sont longs, cela devient vraiment contre-productif !
 
 .center[![:scale 40%](img/tweet.png)]
     </textarea>
