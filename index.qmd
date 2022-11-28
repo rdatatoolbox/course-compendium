@@ -1,0 +1,892 @@
+---
+format:
+  revealjs: 
+    theme: [white, assets/custom.scss]
+self-contained: true
+---
+
+##  {background-image="assets/img/folder_tidy_cooking.png" background-size="100%" background-position="right top"}
+
+[Research Compendium]{.absolute .big .blue bottom="60" left="0"} [*ou
+comment bien ranger sa cuisine*]{.absolute .fragment .smaller
+bottom="20" left="0"}
+
+# Research Compendium
+
+# Research Compen[koi ?]{.orange}
+
+## Compendium
+
+<br /> <br /> "A collection of concise but detailed information about a
+particular subject"
+
+<br /> <br /> [Un abrégé, un précis, un recueil.]{.fragment}
+
+<br />
+
+
+:::: {.fragment}
+[Une archive qui synthétise de manière exhaustive votre projet d'analyse de
+données.]{.blue}
+::::
+
+
+## Research Compendium
+
+<br />
+
+> -   Quelques règles simples pour organiser son répertoire de travail
+
+> -   Et pouvoir s'y retrouver (ou que les autres s'y retrouvent)
+
+> -   Partage du code, des données, des résultats. Avec vous-même, avec
+>     vos étudiants, vos encadrants, vos collègues ou le reste de la
+>     communauté scientifique.
+
+##  {background-image="assets/img/folder_mess_cooking.png" background-size="100%" background-position="right top" background-color="#FFFFFF"}
+
+[**Le problème**]{.absolute .big .orange bottom="0" left="0"} ["J'ai ma
+propre organisation"]{.absolute .fragment .smaller top="20" right="0"}
+
+##  {background-image="assets/img/folder_tidy_cooking.png" background-size="100%" background-position="right top" background-color="#FFFFFF"}
+
+[Here enters ... <br /> ]{.absolute .big .blue bottom="40"
+left="-60"}
+[le 'Research Compendium']{.absolute .big .blue bottom="-30"
+left="-60" .fragment}
+
+## Research compendium
+
+::: {.callout-note collapse="true"}
+## le but ?
+
+The goal of a research compendium is to provide a [standard]{.blue}
+and easily recognisable way for [organising the digital
+materials]{.blue} of a project to enable [others]{.blue} to
+[inspect]{.blue}, [reproduce]{.blue}, and [extend]{.blue} the
+research.
+:::
+
+::: {.fragment}
+::: {.callout-warning}
+## Three Generic Principles
+
+::: {.fragment}
+1.  **Organize its files according to prevailing conventions**: i) help
+    other people recognize the structure of the project, ii) supports
+    tool building which takes advantage of the shared structure.
+:::
+::: {.fragment}
+2.  **Separate of data, method, and output**, while making the
+    relationship between them clear.
+:::
+::: {.fragment}
+3.  **Specify the computational environment that was used for the
+    original analysis**.
+:::
+:::
+:::
+
+## Organisation (projets) {auto-animate=true}
+
+::: callout-note
+## Utilisez les projets RStudio
+Travaillez selon le modèle : "1 projet = 1 compendium = 1 répertoire".
+<br/> <br/>
+L'utilisation d'un projet RStudio permet de se retrouver à la racine du
+projet à son ouverture.
+:::
+
+::: {.fragment}
+::: {.columns}
+::: {.column}
+
+    │
+    ├── [my_project]
+    │   └── my_project.Rproj
+    │
+    ├── [another_project]
+    │   └── another_project.Rproj
+    │
+    ├── [again_another_project]
+    │   └── again_another_project.Rproj
+    │
+:::
+
+::: {.column .fragment}
+![](assets/img/setwd_VS_rproj.png)
+:::
+:::
+:::
+
+## Organisation (projets) {auto-animate=true}
+
+![](assets/img/setwd_VS_rproj.png){width="100%" fig-align="center"}
+
+## Organisation (projets) {auto-animate=true}
+
+![](assets/img/setwd_VS_rproj.png){width="300"}
+
+::: {.callout-warning}
+## Stop à `setwd()` !!
+Les chemins absolus (e.g. `C:\\Albert\Bureau\PhD`) ne fonctionnent que
+(temporairement) chez vous et jamais chez les autres.
+
+Tous les chemins seront [relatifs]{.blue} et définis à partir de la
+racine du projet : e.g. `outputs/01_datacleaned.csv`,
+`data/data_raw.csv`
+:::
+
+## Organisation (projets) {auto-animate=true}
+
+<br/>
+
+::: columns
+::: {.column width="40%"}
+![](assets/img/here.png)
+![](assets/img/setwd_VS_rproj.png)
+:::
+
+::: {.column width="60%"}
+::: callout-note
+## Utilisez le package [`{here}`](https://here.r-lib.org) 
+
+pour laisser le code recréer les chemins absolus :
+
+```r
+# bad !
+setwd("good/luck/where/my_project/is/data")
+dat <- read.csv("data_raw.csv")]
+```
+:::
+:::
+:::
+
+## Organisation (projets) {auto-animate=true}
+
+<br/>
+
+::: columns
+::: {.column width="40%"}
+![](assets/img/here.png)
+:::
+
+::: {.column width="60%"}
+::: callout-note
+## Utilisez le package [`{here}`](https://here.r-lib.org) 
+
+pour laisser le code recréer les chemins absolus :
+
+```r
+# bad !
+# setwd("good/luck/where/my_project/is/data")
+# dat <- read.csv("data_raw.csv")]
+
+# better
+dat_path <- file.path("data", "data_raw.csv")
+dat <- read.csv(here::here(dat_path))
+```
+:::
+:::
+:::
+
+
+## Separation of [data]{.blue}, [method]{.blue}, and [output]{.blue}
+
+<br/>This means data files must be separate from code files. And that output files are separated too.
+
+## Separation of [data]{.blue}, [method]{.blue}, and [output]{.blue}  {auto-animate=true}
+
+<br/>
+La séparation entre données et résultats est matérialisée par des répertoires.
+<br/>
+```
+    .
+    ├── my_project.Rproj
+    ├── [data]
+    └── [outputs]
+```
+
+## Separation of [data]{.blue}, [method]{.blue}, and [output]{.blue}  {auto-animate=true}
+
+<br/>
+La séparation entre données et résultats est matérialisée par des répertoires.
+<br/>
+```
+    .
+    ├── my_project.Rproj
+    ├── [data] (données brutes)
+    └── [outputs] (résultats)
+```
+
+## Separation of [data]{.blue}, [method]{.blue}, and [output]{.blue}  {auto-animate=true}
+
+<br/>
+La séparation entre données et résultats est matérialisée par des répertoires.
+<br/>
+```
+    .
+    ├── my_project.Rproj
+    ├── [data] (données brutes)
+    └── [outputs] (résultats)
+```
+
+
+::: callout-warning
+## Implications
+
+::: {.fragment}
+Keeping data and method separate treats the data as "read-only", so that
+the original data is untouched and all modifications are transparently
+documented in the code.
+:::
+::: {.fragment}
+[The output files should be considered as disposable]{.blue}, with a
+mindset that one can always easily regenerate the output using the code
+and data.
+:::
+:::
+
+## Separation of [data]{.blue}, [method]{.blue}, and [output]{.blue}  {auto-animate=true}
+
+<br/>
+
+::: {.callout-warning}
+## Stop à `rm(list=ls())` !!
+
+Les résultats sont [refabricables]{.blue}.
+
+![](assets/img/options_general_RStudio.png){fig-align="center"}
+
+:::
+
+
+
+## Separation of [data]{.blue}, [method]{.blue}, and [output]{.blue}  {auto-animate=true}
+
+<br/>
+Le code (les méthodes) est factorisé en morceaux réutilisables (des [fonctions]{.orange}),
+elle sont appellées par les scripts d'analyses :
+<br/>
+```
+    .
+    ├── my_project.Rproj
+    ├── [data] (données brutes)
+    ├── [R] (fonctions = morceaux de code réutilisables)
+    ├── [analyses] (les scripts)
+    └── [outputs] (résultats)
+```
+
+## Separation of [data]{.blue}, [method]{.blue}, and [output]{.blue}  {auto-animate=true}
+
+<br/>
+Le code (les méthodes) est factorisé en morceaux réutilisables (des functions),
+elle sont appellées par les scripts d'analyses :
+<br/>
+```
+    .
+    ├── my_project.Rproj
+    ├── [data]
+    ├── [R]
+    ├── [analyses]
+    └── [outputs]
+```
+
+::: {.callout-important}
+## attention à R
+
+Attention le répertoire `R` ne doit contenir que des fichiers `.R` qui ne contienne que des définitions de fonctions !
+
+Tout code présent dans `R` sera executé lors d'un appel aux fonctions `devtools::load_all()` ou `targets::tar_source()`, bien utiles par ailleurs !
+:::
+
+
+## Separation of [data]{.blue}, [method]{.blue}, and [output]{.blue}  {auto-animate=true}
+
+<br/>
+
+:::: {.columns}
+
+::: {.column}
+```
+    .
+    ├── my_project.Rproj
+    ├── [data]
+    ├── [R]
+    ├── [analyses]
+    └── [outputs]
+```
+:::
+
+::: {.column}
+
+::: {.fragment fragment-index=1}
+```
+    .
+    ├── my_project.Rproj
+    ├── [data]
+    │   ├── [raw_data]
+    │   └── [derived_data]
+    ├── [R]
+    ├── [analyses]
+    ├── [figures]
+    └── [outputs]
+```
+:::
+:::
+
+::::
+
+::: {.fragment fragment-index=2}
+::: {.callout-note}
+## Fléxibilité
+
+Il existe des modèles d'organisations plus ou moins complexes, on peut aussi adapter la compléxité du compendium à celle du projet.
+
+:::
+:::
+
+## Principes {auto-animate=true}
+
+::: {.incremental}
+- Le flux d'analyses doit être séparé en étapes courtes (ou pas trop longues) et homogènes
+<br/>
+- Numérotez les scripts, placez-y des entêtes
+:::
+
+::: {.fragment}
+```
+.
+├── my_project.Rproj
+├── [data]
+├── [R]
+├── [analyses]
+│   ├── 00_setup.R (chargement des packages, variables globales)
+│   ├── 01_data.R (lecture et formatage des données)
+│   ├── 02_length-weight.R (première étape d'analyse)
+│   ├── 03_plot-length-weight.R (génération du premier plot)
+│   ├── ...
+└── [outputs]
+```
+:::
+
+## Principes {auto-animate=true}
+
+- Le flux d'analyses doit être séparé en étapes courtes (ou pas trop longues) et homogènes
+<br/>
+- Numérotez les scripts, placez-y des entêtes
+
+```
+############################################################
+#
+# 00_setup.R: load packages, set global variables
+#
+# francois.guilhaumon@ird.fr
+############################################################
+```
+
+
+## Principes {auto-animate=true}
+
+::: {.incremental}
+- The relationship between which code operates on which data in which order to produce which outputs must be specified as well.
+
+- Utilisez un script "maître" (`make.R`) qui execute les étapes dans l'ordre (c'est un des SEULS scripts R à la racine !)
+
+:::
+
+::: {.fragment}
+
+```
+.
+├── my_project.Rproj
+├── [data]
+├── [R]
+├── [analyses]
+├── [outputs]
+└── make.R
+```
+:::
+
+
+## Principes {auto-animate=true}
+
+- Utilisez un script "maître" (`make.R`) qui execute les étapes dans l'ordre (c'est un des SEULS scripts R à la racine !)
+
+
+```r
+############################################################
+#
+# make.R: build the project
+#
+############################################################
+
+source("analyses/00_setup.R")
+
+source("analyses/01_data.R")
+
+source("analyses/02_length-weight.R")
+
+source("analyses/03_plot-length-weight.R")
+
+```
+
+## Principes
+
+- The relationship between which code operates on which data in which order to produce which outputs must be specified as well.
+
+:::: {.fragment}
+Chaque script écrit des résultats (fichiers) les référençant explicitement dans leur nom.
+
+::: {.incremental}
+
+- le script ["analyses/01_data.R"]{.blue} écrit des résultats du type ["outputs/01_length-weight_females.RData"]{.orange}
+<br/>
+- le script ["analyses/03_plot-length-weight.R"]{.blue} écrit des résultats du type ["figures/03_length-weight_males.png"]{.orange}
+
+:::
+
+::::
+
+
+## Limitation du modèle ... {auto-animate=true}
+
+::: {.incremental}
+- Il est compliqué, lorsque l'analyse n'est pas linéaire ou longue, de se souvenir de toutes les dépendances entre scripts, données et résultats ...
+
+- On est souvent ammener à relancer l'ensemble des analyses ...
+
+- Et si les calculs sont longs, cela devient vraiment contre-productif !
+
+:::
+
+![](assets/img/tweet.png){fig-align="center"}
+
+## Limitation du modèle ... {auto-animate=true}
+
+![](assets/img/tweet.png){fig-align="center"}
+
+
+## Limitation du modèle ... {auto-animate=true}
+
+- Utilisez le package [targets]{.blue}
+
+<br/>
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+![](assets/img/targets_logo.png)
+
+:::
+
+::: {.column width="60%"}
+
+![](assets/img/targets_flow.png)
+
+:::
+
+::::
+
+
+## Principes {auto-animate=true}
+
+-  Should specify the computational environment that was used for the original analysis.
+
+> At its most basic, this could be a plain text file that includes a short list of the names and version numbers of the software and other critical tools used for the analysis. In more complex approaches, described below, the computational environment can be automatically preserved or reproduced as well.
+
+
+## Principes {auto-animate=true}
+
+-  Should specify the computational environment that was used for the original analysis.
+
+::::: {.columns}
+
+:::: {.column width="60%"}
+
+:::: {.fragment}
+
+::: {.callout-tip}
+## Placez un README à la racine du projet.
+
+Écrivez-le EN `Rmd` ou `qmd`, compilez le dans le `make.R`.
+
+```r
+############################################################
+#
+# make.R: build the project
+#
+############################################################
+
+source("analyses/00_setup.R")
+
+[...]
+
+source("analyses/03_plot-length-weight.R")
+
+quarto::quarto_render("README.qmd", output_file = "README.md")
+```
+
+:::
+
+::::
+::::
+
+:::: {.column width="40%"}
+
+:::: {.fragment}
+
+
+```
+  .
+  ├── my_project.Rproj
+  ├── [data]
+  ├── [R]
+  ├── [analyses]
+  ├── [outputs]
+  ├── README.md
+  ├── README.qmd
+  └── make.R
+```
+
+::::
+::::
+
+::::
+
+## Principes {auto-animate=true}
+
+-  Should specify the computational environment that was used for the original analysis.
+
+Utilisez le fichier [DESCRIPTION]{.blue} et le package [renv]{.blue} pour les packages !
+
+```
+.
+├── DESCRIPTION
+├── [data]
+├── [R]
+├── [analyses]
+├── [outputs]
+├── my_project.Rproj
+├── README.md
+├── README.qmd
+├── renv.lock
+└── make.R
+```
+
+## Principes {auto-animate=true}
+
+-  Should specify the computational environment that was used for the original analysis.
+
+Utilisez le fichier [DESCRIPTION]{.blue} et le package [renv]{.blue} pour les packages !
+
+:::: {.columns}
+
+::: {.column width="65%"}
+
+`DESCRIPTION`
+
+```
+Package: fish_length-weight_run
+Type: Package
+Title: Fish Length-Weight in la Réunion
+Version: 0.0.0.9000
+
+Imports: 
+    ggplot2,
+    qs
+```
+
+:::
+
+::: {.column width="35%"}
+
+`make.R`
+
+```r
+#renv::init()
+renv::install()
+renv::snapshot()
+```
+
+:::
+::::
+
+## Principes {auto-animate=true}
+
+-  Should specify the computational environment that was used for the original analysis.
+<br />
+<br />
+Utilisez [docker]{.blue} pour tout le reste (OS, librairies système) !
+
+![](assets/img/logo-docker.jpg){fig-align="center"}
+
+## Principes {auto-animate=true}
+
+- Séparons aussi le(s) documents de synthèse (papier, présentation, ...)
+
+```
+.
+├── DESCRIPTION
+├── [data]
+├── [R]
+├── [analyses]
+├── [outputs]
+├── [syntheses]
+├── my_project.Rproj
+├── README.md
+├── README.qmd
+├── renv.lock
+└── make.R
+```
+
+## Principes {auto-animate=true}
+
+- Séparons aussi le(s) documents de synthèse (papier, présentation, ...)
+
+```
+.
+├── DESCRIPTION
+├── [data]
+├── [R]
+├── [analyses]
+├── [outputs]
+├── [syntheses]
+| ├── paper.qmd
+| └── presentation.qmd
+├── my_project.Rproj
+├── README.md
+├── README.qmd
+├── renv.lock
+└── make.R
+```
+
+Utilisez le package [quarto]{.blue} il est vraiment puissant.
+
+
+## Principes {auto-animate=true}
+
+- Intégrons aussi les ressources utiles (biblio, etc ...)
+
+```
+.
+├── DESCRIPTION
+├── [data]
+├── [R]
+├── [analyses]
+├── [outputs]
+├── [syntheses]
+├── [docs]
+├── my_project.Rproj
+├── README.md
+├── README.qmd
+├── renv.lock
+└── make.R
+```
+
+## Diffusion / stockage
+
+::: {.incremental}
+- Il existe de nombreuses plateformes pour stocker votre supp. mat.
+
+- La plupat sont propriétaires/privées et/ou payantes (e.g. Dryad, https://datadryad.org/)
+
+- Il existe [Zenodo]{.blue} (https://zenodo.org/) : Il a été créé par OpenAIRE et le CERN pour fournir aux chercheurs un lieu pour déposer des ensembles de données. Il a été lancé en 2013, permettant à des chercheurs de télécharger des fichiers jusqu'à 50 GO.
+
+:::
+
+
+## Diffusion / stockage
+
+- Il existe [Zenodo]{.blue} (https://zenodo.org/) permettant de télécharger des fichiers jusqu'à 50 GO.
+
+<br />
+
+![](assets/img/zenodo.png){width="300px" fig-align="center"}
+
+
+## le package R
+
+::: {.incrtemental}
+
+- Finalement cette architecture n'est pas si différente de celle d'un package R !
+
+- En intégrant les éléments essentiels de la structure d'un package (`DESCRIPTION`, `R/`) on bénéficie de tous les outils développés dans ce contexte.
+
+:::
+
+::: {.fragment}
+
+::: {.callout-tip}
+## Outils de développement
+
+```r
+devtools::load_all()
+
+renv::install()
+
+targets::tar_source()
+
+usethis::use_r()
+```
+
+:::
+
+:::
+
+## Research  Compendium {auto-animate=true}
+
+<br/>
+<br/>
+
+```
+    .
+    ├── [data]
+    ├── [R]
+    ├── [analyses]
+    ├── [outputs]
+    ├── [syntheses]
+    ├── [docs]
+    ├── my_project.Rproj
+    ├── README.md
+    ├── DESCRIPTION
+    ├── Dockerfile
+    ├── renv.lock
+    ├── _targets.R
+    └── make.R
+```
+
+## Research  Compendium {auto-animate=true}
+
+<br/>
+<br/>
+
+```
+    .
+    ├── [data] (données brutes)
+    ├── [R] (fonctions)
+    ├── [analyses] (scripts)
+    ├── [outputs] (résultats)
+    ├── [syntheses]
+    ├── [docs]
+    ├── my_project.Rproj
+    ├── README.md
+    ├── DESCRIPTION
+    ├── Dockerfile
+    ├── renv.lock
+    ├── _targets.R
+    └── make.R
+```
+
+## Research  Compendium {auto-animate=true}
+
+<br/>
+<br/>
+
+```
+    .
+    ├── [data] (données brutes)
+    ├── [R] (fonctions)
+    ├── [analyses] (scripts)
+    ├── [outputs] (résultats)
+    ├── [syntheses] (article, présentation)
+    ├── [docs] (biblio)
+    ├── my_project.Rproj
+    ├── README.md
+    ├── DESCRIPTION
+    ├── Dockerfile
+    ├── renv.lock
+    ├── _targets.R
+    └── make.R
+```
+
+## Research  Compendium {auto-animate=true}
+
+<br/>
+<br/>
+
+```
+    .
+    ├── [data] (données brutes)
+    ├── [R] (fonctions)
+    ├── [analyses] (scripts)
+    ├── [outputs] (résultats)
+    ├── [syntheses] (article, présentation)
+    ├── [docs] (biblio)
+    ├── my_project.Rproj (projet)
+    ├── README.md (help !)
+    ├── DESCRIPTION
+    ├── Dockerfile
+    ├── renv.lock
+    ├── _targets.R
+    └── make.R
+```
+
+## Research  Compendium {auto-animate=true}
+
+<br/>
+<br/>
+
+```
+    .
+    ├── [data] (données brutes)
+    ├── [R] (fonctions)
+    ├── [analyses] (scripts)
+    ├── [outputs] (résultats)
+    ├── [syntheses] (article, présentation)
+    ├── [docs] (biblio)
+    ├── my_project.Rproj (projet)
+    ├── README.md (help !)
+    ├── DESCRIPTION (dépendences, packages)
+    ├── Dockerfile
+    ├── renv.lock (dépendences, packages)
+    ├── _targets.R
+    └── make.R
+```
+
+## Research  Compendium {auto-animate=true}
+
+<br/>
+<br/>
+
+```
+    .
+    ├── [data] (données brutes)
+    ├── [R] (fonctions)
+    ├── [analyses] (scripts)
+    ├── [outputs] (résultats)
+    ├── [syntheses] (article, présentation)
+    ├── [docs] (biblio)
+    ├── my_project.Rproj (projet)
+    ├── README.md (help !)
+    ├── DESCRIPTION (dépendences, packages)
+    ├── Dockerfile (dépendences, -> OS)
+    ├── renv.lock (dépendences, packages)
+    ├── _targets.R
+    └── make.R
+```
+
+
+## Research  Compendium {auto-animate=true}
+
+<br/>
+<br/>
+
+```
+    .
+    ├── [data] (données brutes)
+    ├── [R] (fonctions)
+    ├── [outputs] (résultats)
+    ├── [syntheses] (article, présentation)
+    ├── [docs] (biblio)
+    ├── my_project.Rproj (projet)
+    ├── README.md (help !)
+    ├── DESCRIPTION (dépendences, packages)
+    ├── Dockerfile (dépendences, -> OS)
+    ├── renv.lock (dépendences, packages)
+    ├── _targets.R (workflow)
+    └── make.R (workflow)
+```
+
+

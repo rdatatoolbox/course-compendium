@@ -21,27 +21,11 @@ and the
 
 ### Usage
 
-First install required R packages listed in the 
-[`DESCRIPTION`](https://github.com/rdatatoolbox/course-compendium/blob/main/DESCRIPTION)
-file.
+To compile/update the `html` presentation, run: 
 
 ```r
-## Install 'remotes' package (if necessary) ----
-install.packages("remotes")
-
-## Install required packages ----
-remotes::install_deps()
-```
-
-<br />
-
-To contribute, edit the 
-[`index.Rmd`](https://github.com/rdatatoolbox/course-compendium/blob/main/index.Rmd) 
-file. To update the `html` presentation, run: 
-
-```r
-## Convert Rmd to html ----
-rmarkdown::render("index.Rmd")
+## Convert qmd to html ----
+quarto::quarto_render("index.qmd")
 ```
 
 
