@@ -89,7 +89,7 @@ research.
 
 ## Organisation (projets) {auto-animate=true}
 
-::: callout-note
+::: {.callout-note}
 ## Utilisez les projets RStudio
 Travaillez selon le modèle : "1 projet = 1 compendium = 1 répertoire".
 <br/> <br/>
@@ -97,10 +97,11 @@ L'utilisation d'un projet RStudio permet de se retrouver à la racine du
 projet à son ouverture.
 :::
 
-::: {.fragment}
-::: {.columns}
-::: {.column}
 
+::: {.columns}
+::: {.column  .fragment}
+
+```
     │
     ├── [my_project]
     │   └── my_project.Rproj
@@ -111,11 +112,12 @@ projet à son ouverture.
     ├── [again_another_project]
     │   └── again_another_project.Rproj
     │
+```
+
 :::
 
 ::: {.column .fragment}
 ![](assets/img/setwd_VS_rproj.png)
-:::
 :::
 :::
 
@@ -125,7 +127,7 @@ projet à son ouverture.
 
 ## Organisation (projets) {auto-animate=true}
 
-![](assets/img/setwd_VS_rproj.png){width="300"}
+![](assets/img/setwd_VS_rproj.png){width="300" fig-align="center"}
 
 ::: {.callout-warning}
 ## Stop à `setwd()` !!
@@ -889,4 +891,51 @@ usethis::use_r()
     └── make.R (workflow)
 ```
 
+## Research compendium
 
+<br/>
+<br/>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```
+    .
+    ├── README
+    ├── [data]
+    ├── [R]
+    ├── [analyses]
+    | └── pipeline.R
+    ├── [outputs]
+    ├── [documents]
+    ├── my_project.Rproj
+    ├── DESCRIPTION
+    ├── Dockerfile
+    ├── renv.lock
+    └── make.R
+```
+
+:::
+
+::: {.column width="25%"}
+
+<br/>
+
+{{< li scifwrvf trigger=loop delay=1000 scale=50 >}}
+
+:::
+
+::: {.column width="25%"}
+
+<br/>
+
+{{< li pqxdilfs trigger=loop delay=1000 scale=50 >}}
+
+:::
+
+::::
+
+##
+
+![](assets/img/1908-iceberg-lineal.gif){width="300" fig-align="center"}
