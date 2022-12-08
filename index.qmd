@@ -153,7 +153,7 @@ racine du projet : e.g. `outputs/01_datacleaned.csv`,
 ::: callout-note
 ## Utilisez le package [`{here}`](https://here.r-lib.org) 
 
-pour laisser le code recréer les chemins absolus :
+dans vos rapports (quarto, Rmarkdown) pour laisser le code recréer les chemins absolus :
 
 ```r
 # bad !
@@ -177,7 +177,7 @@ dat <- read.csv("data_raw.csv")]
 ::: callout-note
 ## Utilisez le package [`{here}`](https://here.r-lib.org) 
 
-pour laisser le code recréer les chemins absolus :
+dans vos rapports (quarto, Rmarkdown) pour laisser le code recréer les chemins absolus :
 
 ```r
 # bad !
@@ -195,12 +195,17 @@ dat <- read.csv(here::here(dat_path))
 
 ## Separation of [data]{.blue}, [method]{.blue}, and [output]{.blue}
 
-<br/>This means data files must be separate from code files. And that output files are separated too.
+<br/>
+This means data files must be separate from code files.
+
+<br/>
+
+And that output files are separated too.
 
 ## Separation of [data]{.blue}, [method]{.blue}, and [output]{.blue}  {auto-animate=true}
 
 <br/>
-La séparation entre données et résultats est matérialisée par des répertoires.
+La [séparation]{.blue} entre [données]{.blue} et [résultats]{.blue} est matérialisée par des [répertoires]{.blue}.
 <br/>
 ```
     .
@@ -212,7 +217,7 @@ La séparation entre données et résultats est matérialisée par des répertoi
 ## Separation of [data]{.blue}, [method]{.blue}, and [output]{.blue}  {auto-animate=true}
 
 <br/>
-La séparation entre données et résultats est matérialisée par des répertoires.
+La [séparation]{.blue} entre [données]{.blue} et [résultats]{.blue} est matérialisée par des [répertoires]{.blue}.
 <br/>
 ```
     .
@@ -224,7 +229,7 @@ La séparation entre données et résultats est matérialisée par des répertoi
 ## Separation of [data]{.blue}, [method]{.blue}, and [output]{.blue}  {auto-animate=true}
 
 <br/>
-La séparation entre données et résultats est matérialisée par des répertoires.
+La [séparation]{.blue} entre [données]{.blue} et [résultats]{.blue} est matérialisée par des [répertoires]{.blue}.
 <br/>
 ```
     .
@@ -256,7 +261,7 @@ and data.
 ::: {.callout-warning}
 ## Stop à `rm(list=ls())` !!
 
-Les résultats sont [refabricables]{.blue}.
+Les résultats sont "[refabricables]{.blue}".
 
 ![](assets/img/options_general_RStudio.png){fig-align="center"}
 
@@ -282,7 +287,7 @@ elle sont appellées par les scripts d'analyses :
 ## Separation of [data]{.blue}, [method]{.blue}, and [output]{.blue}  {auto-animate=true}
 
 <br/>
-Le code (les méthodes) est factorisé en morceaux réutilisables (des functions),
+Le code (les méthodes) est factorisé en morceaux réutilisables (des [fonctions]{.orange}),
 elle sont appellées par les scripts d'analyses :
 <br/>
 ```
@@ -295,11 +300,11 @@ elle sont appellées par les scripts d'analyses :
 ```
 
 ::: {.callout-important}
-## attention à R
+## Attention à R
 
-Attention le répertoire `R` ne doit contenir que des fichiers `.R` qui ne contienne que des définitions de fonctions !
+Attention le répertoire `R` ne doit contenir que des fichiers `.R` qui ne contiennent que des définitions de fonctions !
 
-Tout code présent dans `R` sera executé lors d'un appel aux fonctions `devtools::load_all()` ou `targets::tar_source()`, bien utiles par ailleurs !
+Car tout code présent dans `R` sera executé lors d'un appel aux fonctions `devtools::load_all()` ou `targets::tar_source()`, bien utiles par ailleurs !
 :::
 
 
@@ -343,7 +348,7 @@ Tout code présent dans `R` sera executé lors d'un appel aux fonctions `devtool
 ::: {.callout-note}
 ## Fléxibilité
 
-Il existe des modèles d'organisations plus ou moins complexes, on peut aussi adapter la compléxité du compendium à celle du projet.
+Il existe des modèles d'organisation plus ou moins complexes, on adaptera la compléxité du compendium à celle du projet.
 
 :::
 :::
@@ -383,7 +388,6 @@ Il existe des modèles d'organisations plus ou moins complexes, on peut aussi ad
 #
 # 00_setup.R: load packages, set global variables
 #
-# francois.guilhaumon@ird.fr
 ############################################################
 ```
 
@@ -393,7 +397,7 @@ Il existe des modèles d'organisations plus ou moins complexes, on peut aussi ad
 ::: {.incremental}
 - The relationship between which code operates on which data in which order to produce which outputs must be specified as well.
 
-- Utilisez un script "maître" (`make.R`) qui execute les étapes dans l'ordre (c'est un des SEULS scripts R à la racine !)
+- Utilisez un script "maître" (`make.R`) qui execute les étapes dans l'ordre (c'est le SEUL script R à la racine !)
 
 :::
 
@@ -413,7 +417,7 @@ Il existe des modèles d'organisations plus ou moins complexes, on peut aussi ad
 
 ## Principes {auto-animate=true}
 
-- Utilisez un script "maître" (`make.R`) qui execute les étapes dans l'ordre (c'est un des SEULS scripts R à la racine !)
+- Utilisez un script "maître" (`make.R`) qui execute les étapes dans l'ordre (c'est le SEUL script R à la racine !)
 
 
 ```r
@@ -438,7 +442,7 @@ source("analyses/03_plot-length-weight.R")
 - The relationship between which code operates on which data in which order to produce which outputs must be specified as well.
 
 :::: {.fragment}
-Chaque script écrit des résultats (fichiers) les référençant explicitement dans leur nom.
+Chaque script (étape) écrit des résultats (fichiers) les référençant explicitement dans leur nom.
 
 ::: {.incremental}
 
@@ -454,9 +458,9 @@ Chaque script écrit des résultats (fichiers) les référençant explicitement 
 ## Limitation du modèle ... {auto-animate=true}
 
 ::: {.incremental}
-- Il est compliqué, lorsque l'analyse n'est pas linéaire ou longue, de se souvenir de toutes les dépendances entre scripts, données et résultats ...
+- Il devient compliqué, lorsque l'analyse n'est pas linéaire et que les relations entre les étapes sont complexes, de se souvenir de toutes les dépendances entre scripts, données et résultats.
 
-- On est souvent ammener à relancer l'ensemble des analyses ...
+- On est souvent ammener à relancer l'ensemble des analyses.
 
 - Et si les calculs sont longs, cela devient vraiment contre-productif !
 
@@ -491,6 +495,23 @@ Chaque script écrit des résultats (fichiers) les référençant explicitement 
 
 ::::
 
+## Limitation du modèle ... {auto-animate=true}
+
+- Utilisez le package [targets]{.blue}
+
+<br/>
+
+```
+.
+├── my_project.Rproj
+├── [data]
+├── [R]
+├── [analyses]
+|   └── pipeline.R
+├── [outputs]
+└── make.R
+```
+
 
 ## Principes {auto-animate=true}
 
@@ -512,7 +533,7 @@ Chaque script écrit des résultats (fichiers) les référençant explicitement 
 ::: {.callout-tip}
 ## Placez un README à la racine du projet.
 
-Écrivez-le EN `Rmd` ou `qmd`, compilez le dans le `make.R`.
+Écrivez-le en `Rmd` ou `qmd`, compilez le dans le `make.R`.
 
 ```r
 ############################################################
@@ -521,13 +542,67 @@ Chaque script écrit des résultats (fichiers) les référençant explicitement 
 #
 ############################################################
 
-source("analyses/00_setup.R")
-
 [...]
 
 source("analyses/03_plot-length-weight.R")
 
 quarto::quarto_render("README.qmd", output_file = "README.md")
+```
+
+:::
+
+::::
+::::
+
+:::: {.column width="40%"}
+
+:::: {.fragment}
+
+
+```
+  .
+  ├── my_project.Rproj
+  ├── [data]
+  ├── [R]
+  ├── [analyses]
+  ├── [outputs]
+  ├── README.md
+  ├── README.qmd
+  └── make.R
+```
+
+::::
+::::
+
+::::
+
+
+## Principes {auto-animate=true}
+
+-  Should specify the computational environment that was used for the original analysis.
+
+::::: {.columns}
+
+:::: {.column width="60%"}
+
+:::: {.fragment}
+
+::: {.callout-tip}
+## Placez un README à la racine du projet.
+
+Écrivez-le en `Rmd` ou `qmd`, compilez le dans le `make.R`.
+
+```r
+############################################################
+#
+# make.R: build the project
+#
+############################################################
+
+[...]
+
+,tarchetypes::tar_quarto("README.qmd", output_file = "README.md")
+)
 ```
 
 :::
@@ -655,8 +730,8 @@ Utilisez [docker]{.blue} pour tout le reste (OS, librairies système) !
 ├── [analyses]
 ├── [outputs]
 ├── [syntheses]
-| ├── paper.qmd
-| └── presentation.qmd
+|   ├── paper.qmd
+|   └── presentation.qmd
 ├── my_project.Rproj
 ├── README.md
 ├── README.qmd
@@ -679,7 +754,7 @@ Utilisez le package [quarto]{.blue} il est vraiment puissant.
 ├── [analyses]
 ├── [outputs]
 ├── [syntheses]
-├── [docs]
+├── [documents]
 ├── my_project.Rproj
 ├── README.md
 ├── README.qmd
@@ -710,7 +785,7 @@ Utilisez le package [quarto]{.blue} il est vraiment puissant.
 
 ## le package R
 
-::: {.incrtemental}
+::: {.incremental}
 
 - Finalement cette architecture n'est pas si différente de celle d'un package R !
 
@@ -730,186 +805,165 @@ renv::install()
 
 targets::tar_source()
 
-usethis::use_r()
+usethis::use_[...]()
 ```
 
 :::
 
 :::
 
-## Research  Compendium {auto-animate=true}
 
-<br/>
-<br/>
-
-```
+## Research  Compendium
+```{.code-overflow-wrap}
     .
     ├── [data]
+    |   └── raw-data.csv    
     ├── [R]
+    |   └── functions.R
     ├── [analyses]
+    |   └── pipeline.R
     ├── [outputs]
     ├── [syntheses]
-    ├── [docs]
+    |   └── paper.qmd
+    ├── [documents]
     ├── my_project.Rproj
     ├── README.md
     ├── DESCRIPTION
     ├── Dockerfile
     ├── renv.lock
-    ├── _targets.R
     └── make.R
 ```
 
-## Research  Compendium {auto-animate=true}
+## Research  Compendium
 
-<br/>
-<br/>
-
-```
+```{.code-overflow-wrap}
     .
-    ├── [data] (données brutes)
-    ├── [R] (fonctions)
-    ├── [analyses] (scripts)
+    ├── [data]
+    |   └── raw-data.csv
+    ├── [R]
+    |   └── functions.R
+    ├── [analyses]
+    |   └── pipeline.R
+    ├── [outputs]
+    ├── [syntheses]
+    |   └── paper.qmd
+    ├── [documents]
+    ├── my_project.Rproj (projet)
+    ├── README.md
+    ├── DESCRIPTION
+    ├── Dockerfile
+    ├── renv.lock
+    └── make.R
+```
+
+## Research  Compendium
+
+```{.code-overflow-wrap}
+    .
+    ├── [data]
+    |   └── raw-data.csv (données brutes)
+    ├── [R]
+    |   └── functions.R (fonctions)
+    ├── [analyses]
+    |   └── pipeline.R (workflow)
     ├── [outputs] (résultats)
     ├── [syntheses]
-    ├── [docs]
-    ├── my_project.Rproj
+    |   └── paper.qmd
+    ├── [documents]
+    ├── my_project.Rproj (projet)
     ├── README.md
     ├── DESCRIPTION
     ├── Dockerfile
     ├── renv.lock
-    ├── _targets.R
-    └── make.R
+    └── make.R (setup, workflow)
 ```
 
-## Research  Compendium {auto-animate=true}
+## Research  Compendium
 
-<br/>
-<br/>
-
-```
+```{.code-overflow-wrap}
     .
-    ├── [data] (données brutes)
-    ├── [R] (fonctions)
-    ├── [analyses] (scripts)
+    ├── [data]
+    |   └── raw-data.csv (données brutes)
+    ├── [R]
+    |   └── functions.R (fonctions)
+    ├── [analyses]
+    |   └── pipeline.R (workflow)
     ├── [outputs] (résultats)
-    ├── [syntheses] (article, présentation)
-    ├── [docs] (biblio)
-    ├── my_project.Rproj
+    ├── [syntheses]
+    |   └── paper.qmd
+    ├── [documents]
+    ├── my_project.Rproj (projet)
     ├── README.md
-    ├── DESCRIPTION
-    ├── Dockerfile
-    ├── renv.lock
-    ├── _targets.R
-    └── make.R
-```
-
-## Research  Compendium {auto-animate=true}
-
-<br/>
-<br/>
-
-```
-    .
-    ├── [data] (données brutes)
-    ├── [R] (fonctions)
-    ├── [analyses] (scripts)
-    ├── [outputs] (résultats)
-    ├── [syntheses] (article, présentation)
-    ├── [docs] (biblio)
-    ├── my_project.Rproj (projet)
-    ├── README.md (help !)
-    ├── DESCRIPTION
-    ├── Dockerfile
-    ├── renv.lock
-    ├── _targets.R
-    └── make.R
-```
-
-## Research  Compendium {auto-animate=true}
-
-<br/>
-<br/>
-
-```
-    .
-    ├── [data] (données brutes)
-    ├── [R] (fonctions)
-    ├── [analyses] (scripts)
-    ├── [outputs] (résultats)
-    ├── [syntheses] (article, présentation)
-    ├── [docs] (biblio)
-    ├── my_project.Rproj (projet)
-    ├── README.md (help !)
-    ├── DESCRIPTION (dépendences, packages)
-    ├── Dockerfile
-    ├── renv.lock (dépendences, packages)
-    ├── _targets.R
-    └── make.R
-```
-
-## Research  Compendium {auto-animate=true}
-
-<br/>
-<br/>
-
-```
-    .
-    ├── [data] (données brutes)
-    ├── [R] (fonctions)
-    ├── [analyses] (scripts)
-    ├── [outputs] (résultats)
-    ├── [syntheses] (article, présentation)
-    ├── [docs] (biblio)
-    ├── my_project.Rproj (projet)
-    ├── README.md (help !)
     ├── DESCRIPTION (dépendences, packages)
     ├── Dockerfile (dépendences, -> OS)
     ├── renv.lock (dépendences, packages)
-    ├── _targets.R
-    └── make.R
+    └── make.R (setup, workflow)
 ```
 
+## Research  Compendium
 
-## Research  Compendium {auto-animate=true}
-
-<br/>
-<br/>
-
-```
+```{.code-overflow-wrap}
     .
-    ├── [data] (données brutes)
-    ├── [R] (fonctions)
+    ├── [data]
+    |   └── raw-data.csv (données brutes)
+    ├── [R]
+    |   └── functions.R (fonctions)
+    ├── [analyses]
+    |   └── pipeline.R (workflow)
     ├── [outputs] (résultats)
-    ├── [syntheses] (article, présentation)
-    ├── [docs] (biblio)
+    ├── [syntheses]
+    |   └── paper.qmd (article, supp. mat, presentation)
+    ├── [documents] (biblio)
     ├── my_project.Rproj (projet)
-    ├── README.md (help !)
+    ├── README.md
     ├── DESCRIPTION (dépendences, packages)
     ├── Dockerfile (dépendences, -> OS)
     ├── renv.lock (dépendences, packages)
-    ├── _targets.R (workflow)
-    └── make.R (workflow)
+    └── make.R (setup, workflow)
+```
+
+## Research  Compendium
+
+```{.code-overflow-wrap}
+    .
+    ├── [data]
+    |   └── raw-data.csv (données brutes)
+    ├── [R]
+    |   └── functions.R (fonctions)
+    ├── [analyses]
+    |   └── pipeline.R (workflow)
+    ├── [outputs] (résultats)
+    ├── [syntheses]
+    |   └── paper.qmd (article, supp. mat, presentation)
+    ├── [documents] (biblio)
+    ├── my_project.Rproj (projet)
+    ├── README.md (help)
+    ├── DESCRIPTION (dépendences, packages)
+    ├── Dockerfile (dépendences, -> OS)
+    ├── renv.lock (dépendences, packages)
+    └── make.R (setup, workflow)
 ```
 
 ## Research compendium
-
-<br/>
-<br/>
 
 :::: {.columns}
 
 ::: {.column width="50%"}
 
-```
+```{.code-overflow-wrap}
     .
-    ├── README
     ├── [data]
+    |   └── raw-data.csv
     ├── [R]
+    |   └── functions.R
     ├── [analyses]
-    | └── pipeline.R
+    |   └── pipeline.R
     ├── [outputs]
+    ├── [syntheses]
+    |   └── paper.qmd
     ├── [documents]
     ├── my_project.Rproj
+    ├── README.md
     ├── DESCRIPTION
     ├── Dockerfile
     ├── renv.lock
@@ -921,6 +975,9 @@ usethis::use_r()
 ::: {.column width="25%"}
 
 <br/>
+<br/>
+<br/>
+
 
 {{< li scifwrvf trigger=loop delay=1000 scale=50 >}}
 
@@ -929,13 +986,11 @@ usethis::use_r()
 ::: {.column width="25%"}
 
 <br/>
+<br/>
+<br/>
 
 {{< li pqxdilfs trigger=loop delay=1000 scale=50 >}}
 
 :::
 
 ::::
-
-##
-
-![](assets/img/1908-iceberg-lineal.gif){width="300" fig-align="center"}
