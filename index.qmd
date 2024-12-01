@@ -480,6 +480,11 @@ Chaque script (étape) écrit des résultats (fichiers) les référençant expli
 
 ## Limitation du modèle ... {auto-animate=true}
 
+![](assets/img/tweet.png){fig-align="center"}
+
+
+## Limitation du modèle ... {auto-animate=true}
+
 ::: {.incremental}
 - Il devient compliqué, lorsque l'analyse n'est pas linéaire et que les relations entre les étapes sont complexes, de se souvenir de toutes les dépendances entre scripts, données et résultats.
 
@@ -488,12 +493,6 @@ Chaque script (étape) écrit des résultats (fichiers) les référençant expli
 - Et si les calculs sont longs, cela devient vraiment contre-productif !
 
 :::
-
-![](assets/img/tweet.png){fig-align="center"}
-
-## Limitation du modèle ... {auto-animate=true}
-
-![](assets/img/tweet.png){fig-align="center"}
 
 
 ## Limitation du modèle ... {auto-animate=true}
@@ -524,6 +523,10 @@ Chaque script (étape) écrit des résultats (fichiers) les référençant expli
 
 <br/>
 
+:::: {.columns}
+
+::: {.column width="40%"}
+
 ```
 .
 ├── my_project.Rproj
@@ -532,9 +535,20 @@ Chaque script (étape) écrit des résultats (fichiers) les référençant expli
 ├── [analyses]
 |   └── pipeline.R
 ├── [outputs]
+|   └──[pipeline]
+├── _targets.yaml
 └── make.R
 ```
 
+:::
+
+::: {.column width="60%"}
+
+![](assets/img/targets_flow.png)
+
+:::
+
+::::
 
 ## Principes {auto-animate=true}
 
@@ -591,6 +605,7 @@ quarto::quarto_render("README.qmd", output_file = "README.md")
   ├── [outputs]
   ├── README.md
   ├── README.qmd
+  ├── _targets.yaml
   └── make.R
 ```
 
@@ -647,6 +662,7 @@ quarto::quarto_render("README.qmd", output_file = "README.md")
   ├── [outputs]
   ├── README.md
   ├── README.qmd
+  ├── _targets.yaml
   └── make.R
 ```
 
@@ -671,6 +687,7 @@ Utilisez le fichier [DESCRIPTION]{.blue} et le package [devtools]{.blue} pour le
 ├── my_project.Rproj
 ├── README.md
 ├── README.qmd
+├── _targets.yaml
 └── make.R
 ```
 
@@ -734,6 +751,7 @@ Utilisez le package [renv]{.blue} pour fixer les packages au moment de la releas
 ├── README.md
 ├── README.qmd
 ├── renv.lock
+├── _targets.yaml
 └── make.R
 ```
 
@@ -763,7 +781,9 @@ Utilisez [docker]{.blue} pour tout le reste (OS, librairies système) !
 ├── my_project.Rproj
 ├── README.md
 ├── README.qmd
+├── Dockerfile
 ├── renv.lock
+├── _targets.yaml
 └── make.R
 ```
 
@@ -784,7 +804,9 @@ Utilisez [docker]{.blue} pour tout le reste (OS, librairies système) !
 ├── my_project.Rproj
 ├── README.md
 ├── README.qmd
+├── Dockerfile
 ├── renv.lock
+├── _targets.yaml
 └── make.R
 ```
 
@@ -807,7 +829,9 @@ Utilisez le package [quarto]{.blue} il est vraiment puissant.
 ├── my_project.Rproj
 ├── README.md
 ├── README.qmd
+├── Dockerfile
 ├── renv.lock
+├── _targets.yaml
 └── make.R
 ```
 
@@ -880,6 +904,7 @@ usethis::use_[...]()
     ├── DESCRIPTION
     ├── Dockerfile
     ├── renv.lock
+    ├── _targets.yaml
     └── make.R
 ```
 
@@ -902,6 +927,7 @@ usethis::use_[...]()
     ├── DESCRIPTION
     ├── Dockerfile
     ├── renv.lock
+    ├── _targets.yaml
     └── make.R
 ```
 
@@ -924,6 +950,7 @@ usethis::use_[...]()
     ├── DESCRIPTION
     ├── Dockerfile
     ├── renv.lock
+    ├── _targets.yaml (workflow)
     └── make.R (setup, workflow)
 ```
 
@@ -946,6 +973,7 @@ usethis::use_[...]()
     ├── DESCRIPTION (dépendences, packages)
     ├── Dockerfile (dépendences, -> OS)
     ├── renv.lock (dépendences, packages)
+    ├── _targets.yaml (workflow)
     └── make.R (setup, workflow)
 ```
 
@@ -968,6 +996,7 @@ usethis::use_[...]()
     ├── DESCRIPTION (dépendences, packages)
     ├── Dockerfile (dépendences, -> OS)
     ├── renv.lock (dépendences, packages)
+    ├── _targets.yaml (workflow)
     └── make.R (setup, workflow)
 ```
 
@@ -990,6 +1019,7 @@ usethis::use_[...]()
     ├── DESCRIPTION (dépendences, packages)
     ├── Dockerfile (dépendences, -> OS)
     ├── renv.lock (dépendences, packages)
+    ├── _targets.yaml (workflow)
     └── make.R (setup, workflow)
 ```
 
@@ -997,7 +1027,7 @@ usethis::use_[...]()
 
 :::: {.columns}
 
-::: {.column width="50%"}
+::: {.column width="60%"}
 
 ```{.code-overflow-wrap}
     .
@@ -1016,12 +1046,13 @@ usethis::use_[...]()
     ├── DESCRIPTION
     ├── Dockerfile
     ├── renv.lock
+    ├── _targets.yaml (workflow)
     └── make.R
 ```
 
 :::
 
-::: {.column width="25%"}
+::: {.column width="20%"}
 
 <br/>
 <br/>
@@ -1032,7 +1063,7 @@ usethis::use_[...]()
 
 :::
 
-::: {.column width="25%"}
+::: {.column width="20%"}
 
 <br/>
 <br/>
