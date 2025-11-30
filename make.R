@@ -21,4 +21,4 @@ if (FALSE) {
 #dock$write("Dockerfile")
 
 ## build presentation ----
-quarto::quarto_render(index.qmd)
+quarto::quarto_render("index.qmd")

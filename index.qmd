@@ -86,11 +86,10 @@ research.
 ## Organisation (projets) {auto-animate=true}
 
 ::: {.callout-note}
-## Utilisez les projets RStudio
+## Utilisez les ~~projets RStudio~~ folders Positron
 Travaillez selon le modèle : "1 projet = 1 compendium = 1 répertoire".
 <br/> <br/>
-L'utilisation d'un projet RStudio permet de se retrouver à la racine du
-projet à son ouverture.
+L'utilisation d'un projet RStudio / d'un folder Positron permet de se retrouver à la racine du projet à son ouverture.
 :::
 
 
@@ -100,13 +99,13 @@ projet à son ouverture.
 ```
     │
     ├── [my_project]
-    │   └── my_project.Rproj
+    │   └── my_project.Rproj  (X Positron)
     │
     ├── [another_project]
-    │   └── another_project.Rproj
+    │   └── another_project.Rproj  (X Positron)
     │
     ├── [again_another_project]
-    │   └── again_another_project.Rproj
+    │   └── again_another_project.Rproj  (X Positron)
     │
 ```
 
@@ -371,7 +370,7 @@ Car tout code présent dans `R` sera executé lors d'un appel aux fonctions `dev
 ::: {.callout-note}
 ## Fléxibilité
 
-Il existe des modèles d'organisation plus ou moins complexes, on adaptera la compléxité du compendium à celle du projet.
+Il existe des modèles d'organisation plus ou moins complexes, on adaptera la compléxité du compendium à celle du projet (ou de son cerveau).
 
 :::
 :::
@@ -777,7 +776,7 @@ Utilisez [docker]{.blue} pour tout le reste (OS, librairies système) !
 ├── [R]
 ├── [analyses]
 ├── [outputs]
-├── [syntheses]
+├── [reports]
 ├── my_project.Rproj
 ├── README.md
 ├── README.qmd
@@ -798,7 +797,7 @@ Utilisez [docker]{.blue} pour tout le reste (OS, librairies système) !
 ├── [R]
 ├── [analyses]
 ├── [outputs]
-├── [syntheses]
+├── [reports]
 |   ├── paper.qmd
 |   └── presentation.qmd
 ├── my_project.Rproj
@@ -824,7 +823,7 @@ Utilisez le package [quarto]{.blue} il est vraiment puissant.
 ├── [R]
 ├── [analyses]
 ├── [outputs]
-├── [syntheses]
+├── [reports]
 ├── [documents]
 ├── my_project.Rproj
 ├── README.md
@@ -840,20 +839,12 @@ Utilisez le package [quarto]{.blue} il est vraiment puissant.
 ::: {.incremental}
 - Il existe de nombreuses plateformes pour stocker votre supp. mat.
 
-- La plupat sont propriétaires/privées et/ou payantes (e.g. Dryad, https://datadryad.org/)
+- La plupat sont propriétaires/privées et/ou payantes (e.g. Dryad, https://datadryad.org/), d'autres sont institutionnelles (https://forge.ird.fr)
 
 - Il existe [Zenodo]{.blue} (https://zenodo.org/) : Il a été créé par OpenAIRE et le CERN pour fournir aux chercheurs un lieu pour déposer des ensembles de données. Il a été lancé en 2013, permettant à des chercheurs de télécharger des fichiers jusqu'à 50 GO.
 
 :::
 
-
-## Diffusion / stockage
-
-- Il existe [Zenodo]{.blue} (https://zenodo.org/) permettant de télécharger des fichiers jusqu'à 50 GO.
-
-<br />
-
-![](assets/img/zenodo.png){width="300px" fig-align="center"}
 
 
 ## le package R
@@ -896,7 +887,7 @@ usethis::use_[...]()
     ├── [analyses]
     |   └── pipeline.R
     ├── [outputs]
-    ├── [syntheses]
+    ├── [reports]
     |   └── paper.qmd
     ├── [documents]
     ├── my_project.Rproj
@@ -919,7 +910,7 @@ usethis::use_[...]()
     ├── [analyses]
     |   └── pipeline.R
     ├── [outputs]
-    ├── [syntheses]
+    ├── [reports]
     |   └── paper.qmd
     ├── [documents]
     ├── my_project.Rproj (projet)
@@ -942,7 +933,7 @@ usethis::use_[...]()
     ├── [analyses]
     |   └── pipeline.R (workflow)
     ├── [outputs] (résultats)
-    ├── [syntheses]
+    ├── [reports]
     |   └── paper.qmd
     ├── [documents]
     ├── my_project.Rproj (projet)
@@ -965,7 +956,7 @@ usethis::use_[...]()
     ├── [analyses]
     |   └── pipeline.R (workflow)
     ├── [outputs] (résultats)
-    ├── [syntheses]
+    ├── [reports]
     |   └── paper.qmd
     ├── [documents]
     ├── my_project.Rproj (projet)
@@ -988,7 +979,7 @@ usethis::use_[...]()
     ├── [analyses]
     |   └── pipeline.R (workflow)
     ├── [outputs] (résultats)
-    ├── [syntheses]
+    ├── [reports]
     |   └── paper.qmd (article, supp. mat, presentation)
     ├── [documents] (biblio)
     ├── my_project.Rproj (projet)
@@ -1011,7 +1002,7 @@ usethis::use_[...]()
     ├── [analyses]
     |   └── pipeline.R (workflow)
     ├── [outputs] (résultats)
-    ├── [syntheses]
+    ├── [reports]
     |   └── paper.qmd (article, supp. mat, presentation)
     ├── [documents] (biblio)
     ├── my_project.Rproj (projet)
@@ -1038,7 +1029,7 @@ usethis::use_[...]()
     ├── [analyses]
     |   └── pipeline.R
     ├── [outputs]
-    ├── [syntheses]
+    ├── [reports]
     |   └── paper.qmd
     ├── [documents]
     ├── my_project.Rproj
