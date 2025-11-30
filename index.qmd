@@ -99,13 +99,13 @@ L'utilisation d'un projet RStudio / d'un folder Positron permet de se retrouver 
 ```
     │
     ├── [my_project]
-    │   └── my_project.Rproj  (X Positron)
+    │   └── (my_project.Rproj)
     │
     ├── [another_project]
-    │   └── another_project.Rproj  (X Positron)
+    │   └── (another_project.Rproj)
     │
     ├── [again_another_project]
-    │   └── again_another_project.Rproj  (X Positron)
+    │   └── (again_another_project.Rproj)
     │
 ```
 
