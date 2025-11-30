@@ -99,13 +99,13 @@ L'utilisation d'un projet RStudio / d'un folder Positron permet de se retrouver 
 ```
     │
     ├── [my_project]
-    │   └── (my_project.Rproj)
+    │   └── my_project.Rproj
     │
     ├── [another_project]
-    │   └── (another_project.Rproj)
+    │   └── another_project.Rproj
     │
     ├── [again_another_project]
-    │   └── (again_another_project.Rproj)
+    │   └── again_another_project.Rproj
     │
 ```
 
@@ -118,11 +118,42 @@ L'utilisation d'un projet RStudio / d'un folder Positron permet de se retrouver 
 
 ## Organisation (projets) {auto-animate=true}
 
-![](assets/img/setwd_VS_rproj.png){width="100%" fig-align="center"}
+::: {.callout-note}
+## Utilisez les ~~projets RStudio~~ folders Positron
+Travaillez selon le modèle : "1 projet = 1 compendium = 1 répertoire".
+<br/> <br/>
+L'utilisation d'un projet RStudio / d'un folder Positron permet de se retrouver à la racine du projet à son ouverture.
+:::
+
+
+::: {.columns}
+::: {.column  .fragment}
+
+```
+    │
+    ├── [my_project]
+    │
+    ├── [another_project]
+    │
+    ├── [again_another_project]
+    │
+```
+
+:::
+
+::: {.column .fragment}
+![](assets/img/setwd_VS_rproj-positron.png)
+:::
+:::
+
 
 ## Organisation (projets) {auto-animate=true}
 
-![](assets/img/setwd_VS_rproj.png){width="300" fig-align="center"}
+![](assets/img/setwd_VS_rproj-positron.png){width="100%" fig-align="center"}
+
+## Organisation (projets) {auto-animate=true}
+
+![](assets/img/setwd_VS_rproj-positron.png){width="300" fig-align="center"}
 
 ::: {.callout-warning}
 ## Stop à `setwd()` !!
@@ -141,7 +172,7 @@ racine du projet : e.g. `outputs/01_datacleaned.csv`,
 ::: columns
 ::: {.column width="40%"}
 ![](assets/img/here.png)
-![](assets/img/setwd_VS_rproj.png)
+![](assets/img/setwd_VS_rproj-positron.png)
 :::
 
 ::: {.column width="60%"}
@@ -204,7 +235,6 @@ La [séparation]{.blue} entre [données]{.blue} et [résultats]{.blue} est maté
 <br/>
 ```
     .
-    ├── my_project.Rproj
     ├── [data]
     └── [outputs]
 ```
@@ -216,7 +246,6 @@ La [séparation]{.blue} entre [données]{.blue} et [résultats]{.blue} est maté
 <br/>
 ```
     .
-    ├── my_project.Rproj
     ├── [data] (données brutes)
     └── [outputs] (résultats)
 ```
@@ -228,7 +257,6 @@ La [séparation]{.blue} entre [données]{.blue} et [résultats]{.blue} est maté
 <br/>
 ```
     .
-    ├── my_project.Rproj
     ├── [data] (données brutes)
     └── [outputs] (résultats)
 ```
@@ -262,8 +290,6 @@ Les résultats sont "[refabricables]{.blue}".
 
 :::
 
-
-
 ## Separation of [data]{.blue}, [method]{.blue}, and [output]{.blue}  {auto-animate=true}
 
 <br/>
@@ -272,22 +298,6 @@ elle sont appellées par les scripts d'analyses :
 <br/>
 ```
     .
-    ├── my_project.Rproj
-    ├── [data] (données brutes)
-    ├── [R] (fonctions = morceaux de code réutilisables)
-    ├── [analyses] (les scripts)
-    └── [outputs] (résultats)
-```
-
-## Separation of [data]{.blue}, [method]{.blue}, and [output]{.blue}  {auto-animate=true}
-
-<br/>
-Le code (les méthodes) est factorisé en morceaux réutilisables (des [fonctions]{.orange}),
-elle sont appellées par les scripts d'analyses :
-<br/>
-```
-    .
-    ├── my_project.Rproj
     ├── [data] (données brutes)
     ├── [R] (fonctions = morceaux de code réutilisables)
     ├── [analyses] (les scripts)
@@ -314,7 +324,6 @@ elle sont appellées par les scripts d'analyses :
 <br/>
 ```
     .
-    ├── my_project.Rproj
     ├── [data]
     ├── [R]
     ├── [analyses]
@@ -329,6 +338,15 @@ Attention le répertoire `R` ne doit contenir que des fichiers `.R` qui ne conti
 Car tout code présent dans `R` sera executé lors d'un appel aux fonctions `devtools::load_all()` ou `targets::tar_source()`, bien utiles par ailleurs !
 :::
 
+## Separation of [data]{.blue}, [method]{.blue}, and [output]{.blue}
+
+<br/> <br/>
+
+::: {.callout-important}
+## Attention à R
+
+**Attention le répertoire `R` ne doit contenir que des fichiers `.R` qui ne contiennent que des définitions de fonctions !**
+:::
 
 ## Separation of [data]{.blue}, [method]{.blue}, and [output]{.blue}  {auto-animate=true}
 
@@ -339,7 +357,6 @@ Car tout code présent dans `R` sera executé lors d'un appel aux fonctions `dev
 ::: {.column}
 ```
     .
-    ├── my_project.Rproj
     ├── [data]
     ├── [R]
     ├── [analyses]
@@ -352,7 +369,6 @@ Car tout code présent dans `R` sera executé lors d'un appel aux fonctions `dev
 ::: {.fragment fragment-index=1}
 ```
     .
-    ├── my_project.Rproj
     ├── [data]
     │   ├── [raw_data]
     │   └── [derived_data]
@@ -386,7 +402,6 @@ Il existe des modèles d'organisation plus ou moins complexes, on adaptera la co
 ::: {.fragment}
 ```
 .
-├── my_project.Rproj
 ├── [data]
 ├── [R]
 ├── [analyses]
@@ -427,7 +442,6 @@ Il existe des modèles d'organisation plus ou moins complexes, on adaptera la co
 
 ```
 .
-├── my_project.Rproj
 ├── [data]
 ├── [R]
 ├── [analyses]
@@ -528,7 +542,6 @@ Chaque script (étape) écrit des résultats (fichiers) les référençant expli
 
 ```
 .
-├── my_project.Rproj
 ├── [data]
 ├── [R]
 ├── [analyses]
@@ -597,7 +610,6 @@ quarto::quarto_render("README.qmd", output_file = "README.md")
 
 ```
   .
-  ├── my_project.Rproj
   ├── [data]
   ├── [R]
   ├── [analyses]
@@ -654,7 +666,6 @@ quarto::quarto_render("README.qmd", output_file = "README.md")
 
 ```
   .
-  ├── my_project.Rproj
   ├── [data]
   ├── [R]
   ├── [analyses]
@@ -683,7 +694,6 @@ Utilisez le fichier [DESCRIPTION]{.blue} et le package [devtools]{.blue} pour le
 ├── [R]
 ├── [analyses]
 ├── [outputs]
-├── my_project.Rproj
 ├── README.md
 ├── README.qmd
 ├── _targets.yaml
@@ -712,7 +722,7 @@ Imports:
   qs,
   sf
 Depends:
-  ggplot2,
+  ggplot2
 ```
 
 :::
@@ -746,7 +756,6 @@ Utilisez le package [renv]{.blue} pour fixer les packages au moment de la releas
 ├── [R]
 ├── [analyses]
 ├── [outputs]
-├── my_project.Rproj
 ├── README.md
 ├── README.qmd
 ├── renv.lock
@@ -761,9 +770,29 @@ Utilisez le package [renv]{.blue} pour fixer les packages au moment de la releas
 -  Should specify the computational environment that was used for the original analysis.
 <br />
 <br />
-Utilisez [docker]{.blue} pour tout le reste (OS, librairies système) !
+Utilisez [docker]{.blue} pour tout le reste (OS, librairies système).
 
 ![](assets/img/logo-docker.jpg){fig-align="center"}
+
+## Principes {auto-animate=true}
+
+Utilisez [docker]{.blue} pour tout le reste (OS, librairies système).
+
+
+```
+.
+├── DESCRIPTION
+├── [data]
+├── [R]
+├── [analyses]
+├── [outputs]
+├── README.md
+├── README.qmd
+├── Dockerfile
+├── renv.lock
+├── _targets.yaml
+└── make.R
+```
 
 ## Principes {auto-animate=true}
 
@@ -777,7 +806,6 @@ Utilisez [docker]{.blue} pour tout le reste (OS, librairies système) !
 ├── [analyses]
 ├── [outputs]
 ├── [reports]
-├── my_project.Rproj
 ├── README.md
 ├── README.qmd
 ├── Dockerfile
@@ -800,7 +828,6 @@ Utilisez [docker]{.blue} pour tout le reste (OS, librairies système) !
 ├── [reports]
 |   ├── paper.qmd
 |   └── presentation.qmd
-├── my_project.Rproj
 ├── README.md
 ├── README.qmd
 ├── Dockerfile
@@ -825,7 +852,6 @@ Utilisez le package [quarto]{.blue} il est vraiment puissant.
 ├── [outputs]
 ├── [reports]
 ├── [documents]
-├── my_project.Rproj
 ├── README.md
 ├── README.qmd
 ├── Dockerfile
@@ -839,9 +865,9 @@ Utilisez le package [quarto]{.blue} il est vraiment puissant.
 ::: {.incremental}
 - Il existe de nombreuses plateformes pour stocker votre supp. mat.
 
-- La plupat sont propriétaires/privées et/ou payantes (e.g. Dryad, https://datadryad.org/), d'autres sont institutionnelles (https://forge.ird.fr)
+- La plupat sont propriétaires/privées et/ou payantes (e.g. [Dryad](https://datadryad.org/), d'autres sont institutionnelles [IRD](https://forge.ird.fr))
 
-- Il existe [Zenodo]{.blue} (https://zenodo.org/) : Il a été créé par OpenAIRE et le CERN pour fournir aux chercheurs un lieu pour déposer des ensembles de données. Il a été lancé en 2013, permettant à des chercheurs de télécharger des fichiers jusqu'à 50 GO.
+- Il existe [[Zenodo]{.blue}](https://zenodo.org/) : Il a été créé par OpenAIRE et le CERN pour fournir aux chercheurs un lieu pour déposer des ensembles de données. Il a été lancé en 2013, permettant à des chercheurs de télécharger des fichiers jusqu'à 50 GO.
 
 :::
 
@@ -877,6 +903,9 @@ usethis::use_[...]()
 :::
 
 
+## {background-image="assets/img/r-desc_miracle.png"}
+
+
 ## Research  Compendium
 ```{.code-overflow-wrap}
     .
@@ -890,7 +919,6 @@ usethis::use_[...]()
     ├── [reports]
     |   └── paper.qmd
     ├── [documents]
-    ├── my_project.Rproj
     ├── README.md
     ├── DESCRIPTION
     ├── Dockerfile
@@ -913,7 +941,6 @@ usethis::use_[...]()
     ├── [reports]
     |   └── paper.qmd
     ├── [documents]
-    ├── my_project.Rproj (projet)
     ├── README.md
     ├── DESCRIPTION
     ├── Dockerfile
@@ -936,7 +963,6 @@ usethis::use_[...]()
     ├── [reports]
     |   └── paper.qmd
     ├── [documents]
-    ├── my_project.Rproj (projet)
     ├── README.md
     ├── DESCRIPTION
     ├── Dockerfile
@@ -959,7 +985,6 @@ usethis::use_[...]()
     ├── [reports]
     |   └── paper.qmd
     ├── [documents]
-    ├── my_project.Rproj (projet)
     ├── README.md
     ├── DESCRIPTION (dépendences, packages)
     ├── Dockerfile (dépendences, -> OS)
@@ -982,7 +1007,6 @@ usethis::use_[...]()
     ├── [reports]
     |   └── paper.qmd (article, supp. mat, presentation)
     ├── [documents] (biblio)
-    ├── my_project.Rproj (projet)
     ├── README.md
     ├── DESCRIPTION (dépendences, packages)
     ├── Dockerfile (dépendences, -> OS)
@@ -1005,7 +1029,6 @@ usethis::use_[...]()
     ├── [reports]
     |   └── paper.qmd (article, supp. mat, presentation)
     ├── [documents] (biblio)
-    ├── my_project.Rproj (projet)
     ├── README.md (help)
     ├── DESCRIPTION (dépendences, packages)
     ├── Dockerfile (dépendences, -> OS)
@@ -1016,6 +1039,11 @@ usethis::use_[...]()
 
 ## Research compendium
 
+
+<br/>
+<br/>
+
+
 :::: {.columns}
 
 ::: {.column width="60%"}
@@ -1023,21 +1051,16 @@ usethis::use_[...]()
 ```{.code-overflow-wrap}
     .
     ├── [data]
-    |   └── raw-data.csv
     ├── [R]
-    |   └── functions.R
     ├── [analyses]
-    |   └── pipeline.R
     ├── [outputs]
     ├── [reports]
-    |   └── paper.qmd
     ├── [documents]
-    ├── my_project.Rproj
     ├── README.md
     ├── DESCRIPTION
     ├── Dockerfile
     ├── renv.lock
-    ├── _targets.yaml (workflow)
+    ├── _targets.yaml
     └── make.R
 ```
 
