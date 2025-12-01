@@ -903,9 +903,6 @@ usethis::use_[...]()
 :::
 
 
-## {background-image="assets/img/r-desc_miracle.png"}
-
-
 ## Research  Compendium
 ```{.code-overflow-wrap}
     .
